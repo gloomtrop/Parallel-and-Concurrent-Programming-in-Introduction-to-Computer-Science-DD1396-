@@ -1,0 +1,17 @@
+
+    What happens if you switch the order of the statements wgp.Wait() and close(ch) in the end of the main function?
+    Answer: Wait will then not be able to block the close of the channel which can result in the fact that not all producers
+            get to send to the consumers which creates a panic.
+
+    What happens if you move the close(ch) from the main function and instead close the channel in the end of the function Produce?
+    Answer: The channel is closed when one of the producers are sending which creates a panic.
+
+    What happens if you remove the statement close(ch) completely?
+    Answer: The channel will be open but because the channel will not be use
+            no more the execution will still take place as normal.
+
+    What happens if you increase the number of consumers from 2 to 4?
+    Answer: The time for the producers decrease because they have fewer times to wait for a reciever.
+
+    Can you be sure that all strings are printed before the program stops?
+    Answer: No, because the program just waits for the producers goroutines to finish and not the consumers goroutines.
